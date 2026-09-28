@@ -42,3 +42,5 @@ next-env.d.ts
 
 # but keep the example env file
 !.env.example
+# and the committed non-secret Sanity defaults (public IDs only — no secrets)
+!.env
