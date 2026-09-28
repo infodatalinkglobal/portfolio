@@ -64,7 +64,7 @@ docs/
 ## Status
 
 - [x] **Part 1** — foundation & infrastructure (scaffold, design system, Sanity CMS, global layout)
-- [ ] **Part 2** — pages (home, projects, case studies, blog, about, contact)
-- [ ] **Part 3** — polish, performance & launch
+- [x] **Part 2** — pages (home with hero/typewriter/ticker, projects grid + case studies, blog + posts, about, contact with Formspree relay)
+- [ ] **Part 3** — polish, performance & launch (animations mostly shipped early)
 
 See `docs/agent.md` for the module-by-module tracker.

@@ -19,6 +19,8 @@ interface ButtonProps {
   type?: "button" | "submit" | "reset";
   target?: string;
   rel?: string;
+  /** Forces a download for same-origin file links (e.g. /resume.pdf). */
+  download?: boolean;
   "aria-label"?: string;
 }
 
@@ -53,6 +55,7 @@ export default function Button({
   type = "button",
   target,
   rel,
+  download,
   "aria-label": ariaLabel,
 }: ButtonProps) {
   const reduceMotion = useReducedMotion();
@@ -75,6 +78,7 @@ export default function Button({
         href={href}
         target={target}
         rel={rel}
+        download={download}
         aria-label={ariaLabel}
         className={classes}
       >

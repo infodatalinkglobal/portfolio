@@ -119,115 +119,103 @@ Notes:
 ---
 
 ### Module 2.1 — Home Page (`/`)
-- [ ] **Hero Section** (`components/sections/Hero.tsx`):
-  - Full-viewport height dark section, dot-grid CSS background pattern
-  - Availability badge: `"Open to Opportunities"` in green with pulsing dot
-  - Name in large `JetBrains Mono` with cyan→purple gradient
-  - Typewriter animation cycling through roles: `"AI Engineer"`, `"Agent Builder"`, `"Freelance Dev"`
-  - Subline: `"I build intelligent AI agents that automate the impossible."`
-  - Two CTA buttons: `[View My Work]` (primary) + `[Get In Touch]` (secondary)
-  - Framer Motion fade-up stagger on all elements
-- [ ] **Skills Ticker** (`components/sections/SkillsTicker.tsx`):
-  - Infinite horizontal scroll (CSS animation, no JS)
-  - Tech: Python, LangChain, OpenAI API, CrewAI, AutoGen, HuggingFace, FastAPI, Next.js, React, Tailwind, Git, Docker, Vercel
-  - Fades out on left + right edges with gradient mask
-- [ ] **Featured Projects Section** (`components/sections/FeaturedProjects.tsx`):
-  - Heading: `"Featured Work"`
-  - Fetch projects from Sanity where `featured == true`
-  - Show `SkeletonCard` while loading; max 3 cards
-  - Each card: thumbnail, title, description, tech stack badges, status badge, `[View Project]` link
-  - Hover: cyan glow + subtle lift; `[View All Projects →]` link at bottom
-- [ ] **Latest Blog Posts Section** (`components/sections/LatestPosts.tsx`):
-  - Heading: `"Latest Thoughts"`
-  - Fetch 2 most recent posts from Sanity
-  - Each card: cover image (or placeholder), title, date, excerpt, `[Read More →]`
-  - `[View All Posts →]` link at bottom
-- [ ] **Social Proof Strip** (`components/sections/SocialStrip.tsx`):
-  - GitHub link with icon, LinkedIn link with icon, school/education one-liner
-  - Subtle divider line above + below
-- [ ] Assemble all sections in `app/page.tsx` in order: Hero → Ticker → Featured Projects → Latest Posts → Social Strip
-- [ ] Add `metadata` export to `app/page.tsx` (title + description + OG tags)
-- [ ] Confirm page renders on mobile + desktop with no errors
+- [x] **Hero Section** (`components/sections/Hero.tsx`):
+  - [x] Full-viewport height dark section, dot-grid CSS background pattern (+ floating dots, 3.1)
+  - [x] Availability badge: `"Open to Opportunities"` in green with pulsing dot
+  - [x] Name in large `JetBrains Mono` with cyan→purple gradient
+  - [x] Typewriter animation cycling through roles (static under reduced motion)
+  - [x] Subline: `"I build intelligent AI agents that automate the impossible."`
+  - [x] Two CTA buttons: `[View My Work]` (primary) + `[Get In Touch]` (secondary)
+  - [x] Framer Motion fade-up stagger on all elements
+- [x] **Skills Ticker** (`components/sections/SkillsTicker.tsx`):
+  - [x] Infinite horizontal scroll (pure CSS `animate-ticker`, no JS)
+  - [x] Tech: Python, LangChain, OpenAI API, CrewAI, AutoGen, HuggingFace, FastAPI, Next.js, React, Tailwind, Git, Docker, Vercel
+  - [x] Fades out on left + right edges with gradient mask
+- [x] **Featured Projects Section** (`components/sections/FeaturedProjects.tsx`):
+  - [x] Heading: `"Featured Work"` — fetches `featured == true`, max 3
+  - [x] Each card: thumbnail, title, description, tech stack badges, status badge, `[View Project]` link
+  - [x] Hover: cyan glow + subtle lift; `[View All Projects →]` link at bottom
+  - [x] Dashed empty state before CMS content exists
+- [x] **Latest Blog Posts Section** (`components/sections/LatestPosts.tsx`):
+  - [x] Heading: `"Latest Thoughts"` — 2 most recent posts
+  - [x] Each card: cover image (or icon placeholder), title, date, excerpt, `[Read More →]`
+  - [x] `[View All Posts →]` link at bottom
+- [x] **Social Proof Strip** (`components/sections/SocialStrip.tsx`):
+  - [x] GitHub + LinkedIn links with icons, school/education one-liner, dividers above + below
+- [x] Assemble all sections in order: Hero → Ticker → Featured Projects → Latest Posts → Social Strip
+- [x] Add `metadata` export (title + description + OG/Twitter tags)
+- [x] Confirm page renders on mobile + desktop with no errors (verified in preview)
 
 ### Module 2.2 — Projects Page (`/projects`)
-- [ ] Build `app/projects/page.tsx`:
-  - Heading: `"Projects"` with gradient text
-  - Subheading: `"AI agents, tools, and experiments"`
-  - Fetch all projects from Sanity, sorted by `publishedAt` descending
-  - Responsive grid: 1 col (mobile) → 2 col (tablet) → 3 col (desktop)
-  - Show `SkeletonCard` while loading
-  - Each card: thumbnail, title, description, tech stack badges, status badge, `[View Project]` button
-  - Status badge colors: `live` = green, `in-progress` = cyan, `coming-soon` = muted
-  - Framer Motion stagger animation on card entry
-- [ ] Add `metadata` export (title + description + OG)
-- [ ] Confirm page renders correctly on mobile + desktop
+- [x] Build `app/projects/page.tsx`:
+  - [x] Heading: `"Projects"` with gradient text; subheading: `"AI agents, tools, and experiments"`
+  - [x] Fetch all projects from Sanity, sorted by `publishedAt` descending
+  - [x] Responsive grid: 1 col (mobile) → 2 col (tablet) → 3 col (desktop)
+  - [x] Each card: thumbnail, title, description, tech stack badges, status badge, `[View Project]` button
+  - [x] Status badge colors: `live` = green, `in-progress` = cyan, `coming-soon` = muted
+  - [x] Framer Motion stagger animation on card entry
+- [x] Add `metadata` export (title + description + OG)
+- [x] Confirm page renders correctly on mobile + desktop
 
 ### Module 2.3 — Project Case Study Page (`/projects/[slug]`)
-- [ ] Build `app/projects/[slug]/page.tsx`:
-  - Fetch project by slug from Sanity; return 404 if not found
-  - `generateStaticParams()` + `generateMetadata()` (project title + description)
-- [ ] Layout (top to bottom):
-  - **Hero banner**: full-width thumbnail + project title + one-line description overlay
-  - **Meta bar**: role, status badge, tech stack pills, live URL + GitHub buttons (if available)
-  - **The Problem**: section heading + portable text content
-  - **Your Role**: section heading + portable text
-  - **Approach / Process**: section heading + portable text (supports code blocks)
-  - **Results / Outcome**: section heading + portable text
-  - **Back to Projects** link at bottom
-- [ ] Render `longDescription` using `@portabletext/react` with custom components:
-  - Code blocks: styled dark background + `Fira Code` + syntax highlight colors
-  - Headings: gradient text
-  - Links: cyan underline
-- [ ] Confirm page renders correctly for both seed projects
+- [x] Build `app/projects/[slug]/page.tsx`:
+  - [x] Fetch project by slug from Sanity; **real 404 status** if not found (verified)
+  - [x] `generateStaticParams()` + `generateMetadata()` (project title + description)
+- [x] Layout (top to bottom):
+  - [x] **Hero banner**: full-width thumbnail + project title + one-line description overlay
+  - [x] **Meta bar**: role, status badge, tech stack pills, live URL + GitHub buttons (if available)
+  - [x] **The Problem / Your Role / Approach / Results**: H2 headings in `longDescription` render as gradient section headings
+  - [x] **Back to Projects** link at bottom
+- [x] Render `longDescription` using `@portabletext/react` with custom components (`components/ui/PortableText.tsx`):
+  - [x] Code blocks: dark background + `Fira Code` + token colors (tiny zero-dependency highlighter in `lib/highlight.ts`)
+  - [x] Headings: gradient text; Links: cyan underline (external links open in new tab)
+- [ ] Confirm page renders correctly for both seed projects (**owner task** — needs seed content)
+
+Notes:
+- Detail pages use `force-dynamic` + `generateStaticParams()`: known slugs are prerendered at build, unknown slugs always return a true 404.
+- Segment `loading.tsx` boundaries were intentionally omitted: a streaming loading shell locks the response status at 200 before `notFound()` resolves, which breaks the real-404 requirement. `SkeletonCard` (module 1.3) remains available; no-data sections show the dashed empty states instead.
 
 ### Module 2.4 — Blog Page (`/blog`)
-- [ ] Build `app/blog/page.tsx`:
-  - Heading: `"Blog"` with gradient text
-  - Subheading: `"AI agents, tutorials, and thoughts"`
-  - Fetch all blog posts from Sanity, sorted by `publishedAt` descending
-  - Responsive grid: 1 col (mobile) → 2 col (desktop)
-  - Each card: cover image (or dark placeholder with post icon), title, date, reading time estimate, excerpt, tags as badges, `[Read Post →]`
-  - Framer Motion stagger on card entry
-- [ ] Add `metadata` export
+- [x] Build `app/blog/page.tsx`:
+  - [x] Heading: `"Blog"` with gradient text; subheading: `"AI agents, tutorials, and thoughts"`
+  - [x] Fetch all blog posts from Sanity, sorted by `publishedAt` descending
+  - [x] Responsive grid: 1 col (mobile) → 2 col (desktop)
+  - [x] Each card: cover image (or icon placeholder), title, date, reading time estimate, excerpt, tags as badges, `[Read Post →]`
+  - [x] Framer Motion stagger on card entry
+- [x] Add `metadata` export
 
 ### Module 2.5 — Blog Post Page (`/blog/[slug]`)
-- [ ] Build `app/blog/[slug]/page.tsx`:
-  - Fetch post by slug; return 404 if not found
-  - `generateStaticParams()` + `generateMetadata()`
-- [ ] Layout:
-  - **Header**: cover image, title (gradient), date, tags, reading time
-  - **Body**: rendered portable text (same custom components as case study)
-  - **Back to Blog** link at bottom
-- [ ] Confirm page renders correctly for seed blog post
+- [x] Build `app/blog/[slug]/page.tsx`:
+  - [x] Fetch post by slug; **real 404 status** if not found (verified)
+  - [x] `generateStaticParams()` + `generateMetadata()`
+- [x] Layout:
+  - [x] **Header**: cover image, title (gradient), date, tags, reading time
+  - [x] **Body**: rendered portable text (same custom components as case study)
+  - [x] **Back to Blog** link at bottom
+- [ ] Confirm page renders correctly for seed blog post (**owner task** — needs seed content)
 
 ### Module 2.6 — About Page (`/about`)
-- [ ] Build `app/about/page.tsx`:
-  - **Bio section**: 2–3 paragraph narrative (student, AI agent builder, what drives you)
-  - **Skills grid**: grouped by category:
-    - AI/ML: Python, LangChain, OpenAI API, CrewAI, AutoGen, HuggingFace
-    - Backend: FastAPI, Node.js
-    - Frontend: Next.js, React, Tailwind CSS
-    - Tools: Git, Docker, Vercel, GitHub Copilot
-  - Each skill rendered as a glowing badge
-  - **Education section**: school name, degree, relevant coursework
-  - **Resume download button**: links to `/resume.pdf`
-- [ ] Add `metadata` export
-- [ ] Confirm page renders correctly on mobile + desktop
+- [x] Build `app/about/page.tsx`:
+  - [x] **Bio section**: 3-paragraph narrative (student, AI agent builder, what drives you) — placeholder copy, edit in the page
+  - [x] **Skills grid**: grouped exactly per spec (AI/ML, Backend, Frontend, Tools)
+  - [x] Each skill rendered as a glowing badge (hover cyan glow)
+  - [x] **Education section**: school, degree, coursework (values from `lib/site.ts`)
+  - [x] **Resume download button** → `/resume.pdf` (placeholder PDF generated; replace with your real one)
+- [x] Add `metadata` export
+- [x] Confirm page renders correctly on mobile + desktop
 
 ### Module 2.7 — Contact Page (`/contact`)
-- [ ] Build `app/contact/page.tsx`:
-  - Heading: `"Let's Work Together"` with gradient text
-  - Subtext: `"Open to full-time roles and freelance projects"`
-  - **Contact form** (connected to Formspree):
-    - Fields: Name, Email, Message (textarea), Submit button
-    - Loading state on submit (spinner on button)
-    - Success state: green checkmark + `"Message sent! I'll get back to you soon."`
-    - Error state: red message + retry option
-    - All fields validated (required, email format), keyboard accessible
-  - **Direct links section**: Email (mailto + copy to clipboard), GitHub, LinkedIn
-  - **Availability badge**: `"Available for work"` in green
-- [ ] Add `metadata` export
-- [ ] Confirm form sends email to your address via Formspree (needs real endpoint)
+- [x] Build `app/contact/page.tsx`:
+  - [x] Heading: `"Let's Work Together"` with gradient text; subtext + green `"Available for work"` badge
+  - [x] **Contact form** (client `ContactForm.tsx` → `app/api/contact/route.ts` → Formspree; endpoint stays server-side):
+    - [x] Fields: Name, Email, Message (textarea), Submit button — all with `<label>`, `aria-invalid`, `aria-describedby`
+    - [x] Loading state on submit (spinner on button)
+    - [x] Success state: green checkmark + `"Message sent! I'll get back to you soon."`
+    - [x] Error state: red message + retry (values preserved); clean 503 JSON when endpoint not configured
+    - [x] All fields validated (required, email format, min length)
+  - [x] **Direct links section**: Email (mailto + copy to clipboard with feedback), GitHub, LinkedIn
+- [x] Add `metadata` export
+- [ ] Confirm form sends email to your address via Formspree (**owner task** — needs real endpoint, then test)
 - [ ] Add Formspree endpoint to Vercel env vars (**owner task**)
 
 ---
@@ -240,12 +228,12 @@ Notes:
 
 ### Module 3.1 — Animations & Visual Polish
 - [x] Add Framer Motion **page transition** (`AnimatePresence` + fade slide) — shipped early in 1.3
-- [ ] Add **scroll-triggered** fade-up animations to all section headings using `useInView`
-- [ ] Add **hero particle/dot animation** (lightweight CSS keyframe floating dots — no heavy canvas library)
-- [ ] Add **typewriter effect** to hero subtitle (custom hook)
-- [ ] Add **hover glow** (cyan `box-shadow`) to all project cards and buttons (base styles in UI kit)
+- [x] Add **scroll-triggered** fade-up animations to section headings/content (Framer Motion `whileInView` via `components/ui/Reveal.tsx`)
+- [x] Add **hero particle/dot animation** (CSS keyframe floating dots in Hero, 2.1)
+- [x] Add **typewriter effect** to hero role line (custom `useTypewriter` hook, 2.1; static under reduced motion)
+- [x] Add **hover glow** (cyan `box-shadow`) to all project/blog cards, buttons, and skill badges
 - [x] Add **navbar scroll behavior**: transparent → dark + blur on scroll (Framer Motion `useScroll`) — shipped early in 1.3
-- [x] Add **skills ticker** smooth infinite loop (pure CSS animation keyframes ready in `tailwind.config.ts`)
+- [x] Add **skills ticker** smooth infinite loop (pure CSS `animate-ticker`, 2.1)
 - [x] All animations have `prefers-reduced-motion` fallback (global CSS + `useReducedMotion` in components)
 - [ ] Review every page — confirm animations feel smooth, not excessive
 
@@ -307,5 +295,5 @@ Notes:
 | Part | Modules | Status |
 |---|---|---|
 | Part 1 — Foundation | 1.1 · 1.2 · 1.3 | ✅ (code complete — owner tasks: create Sanity project, connect Vercel) |
-| Part 2 — Pages | 2.1 · 2.2 · 2.3 · 2.4 · 2.5 · 2.6 · 2.7 | ⬜ |
-| Part 3 — Polish & Launch | 3.1 · 3.2 · 3.3 · 3.4 · 3.5 · 3.6 | ⬜ |
+| Part 2 — Pages | 2.1 · 2.2 · 2.3 · 2.4 · 2.5 · 2.6 · 2.7 | ✅ (code complete — owner tasks: seed content, test form with real endpoint) |
+| Part 3 — Polish & Launch | 3.1 · 3.2 · 3.3 · 3.4 · 3.5 · 3.6 | ⬜ (3.1 + ISR/projections mostly done early) |
