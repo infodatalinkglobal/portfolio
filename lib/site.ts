@@ -13,7 +13,7 @@ export const siteConfig = {
   description:
     "Portfolio of Alex Carter, an AI Engineer specializing in intelligent agents — AI agent projects, tutorials, and ways to work together.",
   // Used for metadataBase / OG tags. Update to your Vercel URL after deploying.
-  url: "https://alexcarter-ai.vercel.app",
+  url: "https://portfolio-navy-sigma-97.vercel.app",
   email: "hello@alexcarter.dev",
   github: "https://github.com/your-github-username",
   linkedin: "https://www.linkedin.com/in/your-linkedin-handle",
