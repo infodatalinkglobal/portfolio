@@ -8,9 +8,15 @@ runs fine without them (empty states) and activates as soon as each value is set
 - [x] Project created: **`ej5ob7dg`** (dataset `production` — exists, currently empty)
 - [x] Wired into `.env.local` (`NEXT_PUBLIC_SANITY_PROJECT_ID=ej5ob7dg`)
 
-1. Open **`/admin`** in the preview → sign in with
-   your Sanity account. You should see the Studio with the **Projects** and
-   **Blog Posts** sections.
+1. Open **`/admin`** in the preview → on first load the Studio will ask to
+   **connect to your project**:
+   - **Preview (e2b.app URL):** click **Add CORS origin** → approve → sign in
+     with your Sanity account (one-off origin, no need to register).
+   - **Production (your Vercel URL):** click **Register Studio** — the
+     recommended production setup (schema sync, search, Content Agent).
+   - Optional: pre-add the future Vercel origin now so launch is seamless —
+     `manage.sanity.io` → project → **Settings → APIs → CORS**.
+   You should then see the Studio with the **Projects** and **Blog Posts** sections.
 5. **Seed content** — either:
    - one command (recommended): create an API token at
      https://sanity.io/manage (scopes: `dataset.write` + `dataset.read` for
