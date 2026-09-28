@@ -3,18 +3,12 @@
 Everything the site needs from your accounts. Do these in any order; the site
 runs fine without them (empty states) and activates as soon as each value is set.
 
-## 1. Sanity CMS (~10 min)
+## 1. Sanity CMS
 
-1. Sign up (free) at **https://sanity.io** → create a project, e.g. `ai-portfolio`.
-2. Copy the **Project ID** from the project settings page.
-3. Put it in **`.env.local`**:
-   ```
-   NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id
-   NEXT_PUBLIC_SANITY_DATASET=production
-   NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
-   ```
-   The dataset is created automatically on first use (named `production`).
-4. Restart the dev server (`npm run dev`) → open **`/admin`** → sign in with
+- [x] Project created: **`ej5ob7dg`** (dataset `production` — exists, currently empty)
+- [x] Wired into `.env.local` (`NEXT_PUBLIC_SANITY_PROJECT_ID=ej5ob7dg`)
+
+1. Open **`/admin`** in the preview → sign in with
    your Sanity account. You should see the Studio with the **Projects** and
    **Blog Posts** sections.
 5. **Seed content** — either:
@@ -28,7 +22,13 @@ runs fine without them (empty states) and activates as soon as each value is set
    - or manually: create 2 projects + 1 blog post in the Studio.
      For projects, use **H2 headings** in the case study for
      *The Problem / Your Role / Approach / Process / Results / Outcome*.
-6. Verify: `npm run dev` → `/projects` shows both projects, `/blog` shows the post.
+6. Verify: `/projects` shows both projects, `/blog` shows the post.
+
+> **Note on the build sandbox:** this workspace has no route to
+> `api.sanity.io`, so the *pages* here render their empty states even once
+> content exists (fetches fall back gracefully). `/admin` works fully —
+> Studio talks to Sanity from **your browser** — so create/seed content there,
+> and the pages light up on the Vercel deploy (ISR picks changes up within 60 s).
 
 ## 2. Formspree (~2 min)
 
@@ -47,12 +47,12 @@ runs fine without them (empty states) and activates as soon as each value is set
 2. In Vercel: **Add New → Project** → import the `infodatalinkglobal/portfolio` repo.
    Framework preset: **Next.js** (auto-detected).
 3. Add environment variables (Settings → Environment Variables) for
-   **Production** (and Preview if you like):
+   **Production** (and Preview if you like) — values ready to paste:
    ```
-   NEXT_PUBLIC_SANITY_PROJECT_ID
-   NEXT_PUBLIC_SANITY_DATASET
-   NEXT_PUBLIC_SANITY_API_VERSION
-   FORMSPREE_ENDPOINT
+   NEXT_PUBLIC_SANITY_PROJECT_ID=ej5ob7dg
+   NEXT_PUBLIC_SANITY_DATASET=production
+   NEXT_PUBLIC_SANITY_API_VERSION=2024-01-01
+   FORMSPREE_ENDPOINT=<your form endpoint>
    ```
 4. Deploy → open the live URL:
    - `/` renders, `/projects` + `/blog` pull from Sanity,

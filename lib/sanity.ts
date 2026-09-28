@@ -122,37 +122,64 @@ const BLOG_POST_PROJECTION = `{
   publishedAt
 }`;
 
+/**
+ * `client.fetch` with a graceful fallback.
+ *
+ * The portfolio must never 500 just because Sanity is unreachable —
+ * whether the CMS is down for a minute or the running environment
+ * has no route to the API (e.g. this build sandbox). On failure we
+ * warn and return the same value an empty dataset would produce, so
+ * the pages render their empty states instead of erroring.
+ */
+async function safeFetch<T>(
+  query: string,
+  fallback: T,
+  params?: Record<string, string | number | boolean>
+): Promise<T> {
+  try {
+    return params
+      ? await client.fetch<T>(query, params)
+      : await client.fetch<T>(query);
+  } catch (err) {
+    console.warn(
+      "[sanity] fetch failed — rendering empty state:",
+      err instanceof Error ? err.message : err
+    );
+    return fallback;
+  }
+}
+
 /** All projects, newest first. */
 export async function getProjects(): Promise<Project[]> {
   if (!isSanityConfigured) return [];
   const query = `*[_type == "project" && defined(publishedAt)] | order(publishedAt desc) ${PROJECT_PROJECTION}`;
-  return client.fetch<Project[]>(query);
+  return safeFetch<Project[]>(query, []);
 }
 
 /** One project by slug (null when missing). */
 export async function getProjectBySlug(slug: string): Promise<Project | null> {
   if (!isSanityConfigured) return null;
   const query = `*[_type == "project" && slug.current == $slug][0] ${PROJECT_PROJECTION}`;
-  return client.fetch<Project | null>(query, { slug });
+  return safeFetch<Project | null>(query, null, { slug });
 }
 
 /** Featured projects for the home page (max 3). */
 export async function getFeaturedProjects(limit = 3): Promise<Project[]> {
   if (!isSanityConfigured) return [];
   const query = `*[_type == "project" && featured == true] | order(publishedAt desc)[0...${limit}] ${PROJECT_PROJECTION}`;
-  return client.fetch<Project[]>(query);
+  return safeFetch<Project[]>(query, []);
 }
 
 /** All blog posts, newest first. */
 export async function getBlogPosts(): Promise<BlogPost[]> {
   if (!isSanityConfigured) return [];
   const query = `*[_type == "blogPost" && defined(publishedAt)] | order(publishedAt desc) ${BLOG_POST_PROJECTION}`;
-  return client.fetch<BlogPost[]>(query);
+  return safeFetch<BlogPost[]>(query, []);
 }
 
 /** One blog post by slug (null when missing). */
 export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
   if (!isSanityConfigured) return null;
   const query = `*[_type == "blogPost" && slug.current == $slug][0] ${BLOG_POST_PROJECTION}`;
-  return client.fetch<BlogPost | null>(query, { slug });
+  return safeFetch<BlogPost | null>(query, null, { slug });
 }
