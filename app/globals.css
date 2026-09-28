@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ */
+/* Global CSS variables — palette from agent.md                        */
+/* ------------------------------------------------------------------ */
+:root {
+  --background: #0a0a0f;
+  --surface: #12121a;
+  --line: #1e1e2e;
+  --foreground: #e4e4e7;
+  --muted: #71717a;
+  --cyan: #00f0ff;
+  --purple: #8b5cf6;
+  --green: #00ff88;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+::selection {
+  background-color: rgba(0, 240, 255, 0.25);
+  color: #ffffff;
+}
+
+/* Visible focus ring for keyboard users (Part 3.3) */
+:where(a, button, input, textarea, select, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Gradient text helper (also used by the GradientText component) */
+.text-gradient {
+  background-image: linear-gradient(90deg, var(--cyan), var(--purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Edge fade mask for the skills ticker */
+.ticker-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 12%,
+    black 88%,
+    transparent
+  );
+}
+
+/* ------------------------------------------------------------------ */
+/* Reduced motion — every animation/transition must respect this       */
+/* (agent.md Part 3.1)                                                 */
+/* ------------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
