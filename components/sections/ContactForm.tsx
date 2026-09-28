@@ -13,7 +13,7 @@ interface FieldErrors {
 }
 
 const inputClasses =
-  "w-full rounded-md border border-line bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted transition-colors focus:border-cyan/60 focus:outline-none focus:ring-1 focus:ring-cyan/40";
+  "w-full rounded-md border border-line bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-light transition-colors focus:border-cyan/60 focus:outline-none focus:ring-1 focus:ring-cyan/40";
 
 /**
  * Contact form → /api/contact → Formspree (Module 2.7).

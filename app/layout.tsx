@@ -53,11 +53,20 @@ export const metadata: Metadata = {
     siteName: `${siteConfig.name} — ${siteConfig.role}`,
     title: `${siteConfig.name} — ${siteConfig.role}`,
     description: siteConfig.description,
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: `${siteConfig.name} — ${siteConfig.role}`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${siteConfig.name} — ${siteConfig.role}`,
     description: siteConfig.description,
+    images: ["/og-image.png"],
   },
 };
 

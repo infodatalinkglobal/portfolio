@@ -19,7 +19,7 @@ export default function EmptyState({ title, hint, className }: EmptyStateProps) 
       )}
     >
       <p className="font-mono text-sm text-muted-light">{title}</p>
-      {hint && <p className="mx-auto mt-3 max-w-md text-sm text-muted">{hint}</p>}
+      {hint && <p className="mx-auto mt-3 max-w-md text-sm text-muted-light">{hint}</p>}
     </div>
   );
 }

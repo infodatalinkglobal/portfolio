@@ -8,6 +8,7 @@ import GradientText from "@/components/ui/GradientText";
 import PortableTextView from "@/components/ui/PortableText";
 import Reveal from "@/components/ui/Reveal";
 import { getBlogPostBySlug, getBlogPosts, urlFor } from "@/lib/sanity";
+import { siteConfig } from "@/lib/site";
 import { readingTimeLabel } from "@/lib/richText";
 import { formatDate } from "@/lib/utils";
 
@@ -39,6 +40,7 @@ export async function generateMetadata({
       title: post.title,
       description: post.excerpt,
       type: "article",
+      url: `${siteConfig.url}/blog/${post.slug.current}`,
     },
   };
 }

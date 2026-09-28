@@ -122,7 +122,7 @@ export default function Hero() {
           variants={item}
           href="#featured-work"
           aria-label="Scroll down to featured work"
-          className="mt-16 inline-block font-mono text-xs text-muted transition-colors hover:text-cyan"
+          className="mt-16 inline-block font-mono text-xs text-muted-light transition-colors hover:text-cyan"
         >
           ↓ scroll
         </motion.a>

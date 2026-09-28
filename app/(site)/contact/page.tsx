@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     title: "Contact",
     description: "Open to full-time roles and freelance AI agent projects.",
     type: "website",
+    url: `${siteConfig.url}/contact`,
   },
 };
 
@@ -62,7 +63,7 @@ export default function ContactPage() {
                 </a>
                 <CopyEmail />
               </div>
-              <p className="mt-2 text-xs text-muted">
+              <p className="mt-2 text-xs text-muted-light">
                 Best for opportunities — I reply within 48 hours.
               </p>
             </li>

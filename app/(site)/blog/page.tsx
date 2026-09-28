@@ -5,6 +5,7 @@ import GradientText from "@/components/ui/GradientText";
 import Reveal from "@/components/ui/Reveal";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { getBlogPosts } from "@/lib/sanity";
+import { siteConfig } from "@/lib/site";
 
 /** ISR: revalidate every 60 s (spec 3.4). */
 export const revalidate = 60;
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
     title: "Blog",
     description: "AI agents, tutorials, and thoughts.",
     type: "website",
+    url: `${siteConfig.url}/blog`,
   },
 };
 

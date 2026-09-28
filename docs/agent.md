@@ -235,57 +235,57 @@ Notes:
 - [x] Add **navbar scroll behavior**: transparent → dark + blur on scroll (Framer Motion `useScroll`) — shipped early in 1.3
 - [x] Add **skills ticker** smooth infinite loop (pure CSS `animate-ticker`, 2.1)
 - [x] All animations have `prefers-reduced-motion` fallback (global CSS + `useReducedMotion` in components)
-- [ ] Review every page — confirm animations feel smooth, not excessive
+- [x] Review every page — animations kept restrained: 0.3s page transitions, 0.12s stagger, 300ms hover transitions, `whileInView once:true` (no re-animation on scroll-back); all disabled under reduced motion
 
 ### Module 3.2 — SEO & Metadata
-- [x] Global metadata in `app/layout.tsx`: title template `"%s | Alex Carter — AI Engineer"`, description, keywords, authors, robots (OG image added in 3.2)
-- [ ] Add Open Graph tags to all pages (title, description, image, url, type)
-- [ ] Add Twitter Card meta tags to all pages
-- [ ] Create `app/sitemap.ts` — auto-generates XML sitemap including all project + blog slugs from Sanity
-- [ ] Create `app/robots.ts` — allows all crawlers, points to sitemap
-- [ ] Add favicon: `/app/favicon.ico` (done) + `/public/og-image.png` (1200×630, dark themed)
-- [ ] Test OG tags using opengraph.xyz
+- [x] Global metadata in `app/layout.tsx`: title template `"%s | Alex Carter — AI Engineer"`, description, keywords, authors, robots
+- [x] Open Graph tags on all pages (title, description, image, url, type) — incl. per-slug URLs in `generateMetadata`
+- [x] Twitter Card meta tags (card `summary_large_image` with OG image)
+- [x] `app/sitemap.ts` — static routes + all project + blog slugs from Sanity (revalidate 3600)
+- [x] `app/robots.ts` — allows all crawlers (disallows `/admin` + `/api/`), points to sitemap
+- [x] Favicon: custom `app/favicon.ico` (16/32/48/64 — cyan/purple terminal mark) + `/public/og-image.png` (1200×630, dark themed, ImageMagick-generated)
+- [ ] Test OG tags using opengraph.xyz (**owner task** — needs the public URL)
 
 ### Module 3.3 — Accessibility Audit
-- [ ] All headings in correct semantic order (h1 → h2 → h3, never skip)
-- [ ] All images have meaningful alt text (decorative images use `alt=""`)
-- [ ] All interactive elements reachable and operable by keyboard only
-- [x] Visible focus ring on all interactive elements (cyan outline via `:focus-visible` in globals)
-- [ ] Color contrast passes WCAG AA (4.5:1 body, 3:1 large) — test with browser devtools
-  - Note: small muted/purple text uses AA-safe shades (`muted-light #A1A1AA`, `purple-light #A78BFA`)
-- [ ] No content is conveyed by color alone (status badges include text label too)
-- [x] All form inputs will have associated `<label>` elements (built into Module 2.7)
+- [x] All headings in correct semantic order — verified on every page (exactly 1×h1, no skipped levels)
+- [x] All images have meaningful alt text (decorative overlays/dots use `aria-hidden` / `alt=""`)
+- [x] All interactive elements reachable and operable by keyboard only (buttons/links, focusable, Escape closes menu)
+- [x] Visible focus ring on all interactive elements (cyan `:focus-visible` outline in globals)
+- [x] Color contrast passes WCAG AA — all small-text `text-muted` (#71717A, ~3.9:1) bumped to `muted-light` (#A1A1AA, ~7:1); key pairs verified: cyan on bg 13:1+, purple-light 6.9:1, red-300 error text 5:1+
+- [x] No content conveyed by color alone (status badges include text labels)
+- [x] All form inputs have associated `<label>` + `aria-invalid` + `aria-describedby` (Module 2.7)
 - [x] Navbar mobile menu has proper `aria-expanded` and `aria-label`
 
 ### Module 3.4 — Performance Audit
-- [ ] All images converted to .webp format and optimized
-- [x] Next.js `<Image>` used everywhere with correct width, height, priority on hero image
-- [x] Below-the-fold images use `loading="lazy"` (default for Next.js Image)
-- [ ] No unused dependencies — run `npm ls` and remove anything not needed
+- [x] Images: local assets optimized (woff2 fonts, 66KB og-image.png); Sanity remote images — **upload as .webp** (noted in schema descriptions + checklist)
+- [x] Next.js `<Image>` used everywhere with `fill`/`sizes`, `priority` on hero/case-study banners
+- [x] Below-the-fold images lazy (Next.js Image default)
+- [x] `npm ls` — no unused direct dependencies (two "extraneous" entries are transitive deps of the Sanity stack, not removable)
 - [x] Sanity queries use projections (only fetch fields you need)
-- [x] Enable Incremental Static Regeneration (ISR) on project + blog fetches: `revalidate = 60`
-- [ ] Run Lighthouse audit on: Home (mobile + desktop), a project page, a blog post page
-- [ ] Achieve targets: Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 90, SEO ≥ 95
-- [ ] Fix any Lighthouse issues before launch
+- [x] ISR on project + blog pages: `revalidate = 60` (verified in route table)
+- [ ] Run Lighthouse audit (**owner task** — no Chrome in this sandbox):
+  - `npx lighthouse https://YOUR-URL --form-factor=mobile --chrome-flags="--headless"` (and `--form-factor=desktop`)
+  - on `/`, one project page, one blog post; fix anything below the targets
+- [ ] Achieve targets: Performance ≥ 90, Accessibility ≥ 95, Best Practices ≥ 90, SEO ≥ 95 (design targets all: static/ISR pages, minimal JS, self-hosted fonts, no render-blocking beyond preloaded fonts)
 
 ### Module 3.5 — Final QA Checklist
-- [ ] Test every page on mobile (375px) — no horizontal scroll, no overflow issues
-- [ ] Test every page on tablet (768px) and desktop (1280px)
-- [ ] Test in Chrome, Firefox, Safari
-- [ ] Test all navigation links — no broken links
-- [ ] Test contact form — confirm email arrives
-- [ ] Test Sanity admin at /admin — add a project, confirm it appears on /projects
-- [ ] Test Sanity admin — add a blog post, confirm it appears on /blog
-- [ ] Test resume download button — confirm PDF downloads
-- [ ] Test GitHub + LinkedIn links — open in new tab
-- [ ] Confirm Vercel deploy is live and all env vars are set
-- [ ] Confirm no console errors on any page in production
+- [x] No horizontal-scroll risks in code (max-width containers, responsive 1/2/3-col grids, `overflow-hidden` on ticker/hero, `overflow-x-auto` on code blocks)
+- [ ] Test every page at 375px / 768px / 1280px in Chrome, Firefox, Safari (**owner task** — visual pass)
+- [x] All navigation links verified — `/`, `/projects`, `/blog`, `/about`, `/contact`, `/admin`, `/resume.pdf` all 200; unknown slugs 404
+- [ ] Test contact form — confirm email arrives (**owner task** — needs Formspree endpoint)
+- [ ] Test Sanity admin at /admin — add a project/post, confirm it appears (**owner task** — needs Sanity project)
+- [x] Resume download — 200, valid PDF
+- [x] GitHub + LinkedIn links open in new tab (`target="_blank" rel="noopener noreferrer"`)
+- [ ] Confirm Vercel deploy is live and all env vars are set (**owner task**)
+- [x] No known hydration risks (deterministic dates, client state initialized server-safe, `initial={false}` transitions); confirm zero console errors in production (**owner task**)
 
-### Module 3.6 — Launch
-- [ ] Final push to GitHub → Vercel auto-deploys
-- [ ] Verify live URL works end-to-end
-- [ ] Submit sitemap to Google Search Console (free)
+### Module 3.6 — Launch (owner tasks — checklist in docs/SETUP-CHECKLIST.md)
+- [ ] Final push to GitHub → import repo in Vercel → set 4 env vars → deploy
+- [ ] Verify live URL end-to-end (home, projects, blog, /admin, contact form, sitemap.xml, robots.txt)
+- [ ] Submit `https://YOUR-URL/sitemap.xml` to Google Search Console (free)
+- [ ] Test OG tags at opengraph.xyz
 - [ ] Add portfolio URL to: LinkedIn profile, GitHub profile README, resume PDF, email signature
+- [ ] Replace placeholders: `lib/site.ts` (name/email/school/URLs), `public/resume.pdf`, and regenerate `public/og-image.png` + `app/favicon.ico` with your real name
 - [ ] Share on LinkedIn with a post about what you built 🎉
 
 ---
@@ -296,4 +296,4 @@ Notes:
 |---|---|---|
 | Part 1 — Foundation | 1.1 · 1.2 · 1.3 | ✅ (code complete — owner tasks: create Sanity project, connect Vercel) |
 | Part 2 — Pages | 2.1 · 2.2 · 2.3 · 2.4 · 2.5 · 2.6 · 2.7 | ✅ (code complete — owner tasks: seed content, test form with real endpoint) |
-| Part 3 — Polish & Launch | 3.1 · 3.2 · 3.3 · 3.4 · 3.5 · 3.6 | ⬜ (3.1 + ISR/projections mostly done early) |
+| Part 3 — Polish & Launch | 3.1 · 3.2 · 3.3 · 3.4 · 3.5 · 3.6 | ✅ (code complete — owner tasks: Lighthouse, browser QA, Vercel deploy, Search Console, social) |

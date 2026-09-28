@@ -65,6 +65,9 @@ docs/
 
 - [x] **Part 1** — foundation & infrastructure (scaffold, design system, Sanity CMS, global layout)
 - [x] **Part 2** — pages (home with hero/typewriter/ticker, projects grid + case studies, blog + posts, about, contact with Formspree relay)
-- [ ] **Part 3** — polish, performance & launch (animations mostly shipped early)
+- [x] **Part 3** — polish, performance & launch (SEO: sitemap/robots/OG/favicon, a11y audit, ISR + projections)
+
+> Launch steps (Vercel, Lighthouse, Search Console) are documented in
+> `docs/SETUP-CHECKLIST.md` and `docs/agent.md`.
 
 See `docs/agent.md` for the module-by-module tracker.

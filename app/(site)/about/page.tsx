@@ -33,6 +33,7 @@ export const metadata: Metadata = {
     title: "About",
     description: `About ${siteConfig.name} — AI engineer and agent builder.`,
     type: "website",
+    url: `${siteConfig.url}/about`,
   },
 };
 
@@ -120,7 +121,7 @@ export default function AboutPage() {
                 <MapPin size={14} aria-hidden="true" />
                 {siteConfig.school}
               </p>
-              <p className="mt-3 text-sm leading-relaxed text-muted">
+              <p className="mt-3 text-sm leading-relaxed text-muted-light">
                 Relevant coursework: Machine Learning, Natural Language
                 Processing, Databases, Cloud Computing, Software Engineering.
               </p>
@@ -132,7 +133,7 @@ export default function AboutPage() {
           <Button href="/resume.pdf" download size="lg">
             <Download size={18} aria-hidden="true" /> Download Resume
           </Button>
-          <p className="mt-3 font-mono text-xs text-muted">
+          <p className="mt-3 font-mono text-xs text-muted-light">
             {"// placeholder PDF — replace public/resume.pdf with your real resume"}
           </p>
         </div>

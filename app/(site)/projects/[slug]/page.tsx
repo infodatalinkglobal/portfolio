@@ -10,6 +10,7 @@ import GradientText from "@/components/ui/GradientText";
 import PortableTextView from "@/components/ui/PortableText";
 import Reveal from "@/components/ui/Reveal";
 import { getProjectBySlug, getProjects, urlFor } from "@/lib/sanity";
+import { siteConfig } from "@/lib/site";
 
 /**
  * Rendered on demand so unknown slugs always return a real 404 status
@@ -39,6 +40,7 @@ export async function generateMetadata({
       title: project.title,
       description: project.description,
       type: "article",
+      url: `${siteConfig.url}/projects/${project.slug.current}`,
     },
   };
 }
@@ -105,7 +107,7 @@ export default async function ProjectPage({
         <Reveal>
           <div className="mt-10 flex flex-col gap-5 border-y border-line py-6 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <p className="font-mono text-xs uppercase tracking-widest text-muted">
+              <p className="font-mono text-xs uppercase tracking-widest text-muted-light">
                 Role
               </p>
               <p className="mt-1 font-mono text-sm text-foreground">

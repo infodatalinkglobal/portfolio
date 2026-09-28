@@ -5,6 +5,7 @@ import ProjectCard from "@/components/ui/ProjectCard";
 import Reveal from "@/components/ui/Reveal";
 import SectionWrapper from "@/components/ui/SectionWrapper";
 import { getProjects } from "@/lib/sanity";
+import { siteConfig } from "@/lib/site";
 
 /** ISR: revalidate every 60 s (spec 3.4). */
 export const revalidate = 60;
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
     title: "Projects",
     description: "AI agents, tools, and experiments — built by an AI engineer.",
     type: "website",
+    url: `${siteConfig.url}/projects`,
   },
 };
 
