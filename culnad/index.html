@@ -13,8 +13,8 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 :root{--ink:#12191F;--primary:#1F2A33;--primary-2:#2B3A46;--accent:#C06A38;--accent-2:#D98A5A;--cream:#F7F4EE;--paper:#fff;--line:#E3DDD2;--muted:#5E6A73;--shadow:0 18px 50px rgba(0,0,0,.14);--shadow-sm:0 8px 24px rgba(0,0,0,.10);--disp:'Barlow Condensed',sans-serif;--body:'Inter',system-ui,sans-serif}
-*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
-body{font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:clip}
+body{font-family:var(--body);color:var(--ink);background:var(--paper);line-height:1.65;overflow-x:clip;-webkit-font-smoothing:antialiased}
 img{display:block;max-width:100%}a{color:inherit;text-decoration:none}ul{list-style:none}
 .imgwrap{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--primary),var(--accent))}.imgwrap img{width:100%;height:100%;object-fit:cover}
 h1,h2,h3{font-family:var(--disp);font-weight:800;line-height:1.02;letter-spacing:-.01em}
@@ -77,6 +77,46 @@ footer{background:var(--ink);color:#B8C1C8;border-top:4px solid var(--accent);pa
 .pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}.pi{display:block;border-radius:12px;overflow:hidden;aspect-ratio:4/3;background:var(--primary)}.pi img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.pi:hover img{transform:scale(1.07)}.pi[hidden]{display:none}
 .lb{position:fixed;inset:0;background:rgba(10,14,18,.92);z-index:1300;display:none;align-items:center;justify-content:center;padding:30px}.lb.on{display:flex}.lb img{max-width:100%;max-height:100%;border-radius:8px}.lb button{position:absolute;top:18px;right:24px;background:none;border:0;color:#fff;font-size:34px;cursor:pointer}
 @media(max-width:960px){.two,.fgrid{grid-template-columns:1fr}.abimg{height:300px}}
+
+.mclose{position:absolute;top:14px;right:20px;background:none;border:0;color:#fff;font-size:44px;line-height:1;cursor:pointer;padding:6px 12px}
+.mmenu .mcall{background:var(--accent);padding:10px 30px;border-radius:40px;font-size:30px}
+.wa{display:inline-block;margin-top:4px;color:#7BE0A0;font-weight:600}
+.mbar{display:none}
+.tabs{overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin-left:-6vw;margin-right:-6vw;padding:2px 6vw}.tabs::-webkit-scrollbar{display:none}.tab{white-space:nowrap;flex:0 0 auto}
+form input[type=text],form input[type=tel],form input[type=email],form select,form textarea{font-size:16px}
+@media(max-width:960px){
+ html{-webkit-text-size-adjust:100%}
+ nav{height:64px}.site-header .logo{font-size:23px}
+ .topstrip{font-size:12px;padding:7px 4vw}.topstrip span:nth-child(n+2){display:none}
+ .hero{min-height:0;padding:128px 5vw 48px;display:block}
+ .hero-in{gap:30px}
+ .hero h1{font-size:42px;line-height:1.04}.hero p.sub{font-size:16.5px}
+ .cta{flex-direction:column;margin:22px 0 14px}.cta .btn{text-align:center;padding:16px 20px;font-size:16px}
+ .formcard{padding:22px 18px;border-radius:16px}.formcard h2{font-size:30px}
+ .marq{font-size:17px;padding:10px 0}
+ section{padding:56px 5vw}
+ h2.t{font-size:32px}.lead{font-size:16.5px}
+ .two p{font-size:16px}.abimg{height:260px}
+ .fc{padding:22px 18px}.fc h3{font-size:25px}
+ .sg{gap:14px;grid-template-columns:1fr}.step{padding:22px}
+ .sv{gap:20px}.card .imgwrap{height:200px}.cb{padding:22px 20px}
+ .whyus ul{margin:20px 0 26px}
+ .pg{grid-template-columns:repeat(2,1fr);gap:8px}.pi{border-radius:8px}
+ .tc{padding:22px 20px}.tc blockquote{font-size:16.5px}
+ .faq-q{font-size:16.5px;padding:18px 0}
+ .ag iframe{height:260px}
+ .bigtel{font-size:30px}
+ .cg{gap:30px}.contact .formcard{padding:22px 18px}
+ .ci li{font-size:16px}.ci a{padding:2px 0;display:inline-block}
+ footer{padding:44px 5vw 84px}.fg{gap:26px}.fb{flex-direction:column}
+ .callfab{display:none}
+ .mbar{display:grid;grid-template-columns:1fr 1fr 1fr;position:fixed;left:0;right:0;bottom:0;z-index:950;background:var(--ink);padding:8px 8px calc(8px + env(safe-area-inset-bottom));gap:8px;box-shadow:0 -6px 20px rgba(0,0,0,.25)}
+ .mbar a{display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 4px;border-radius:12px;font-weight:700;font-size:15px;color:#fff;background:var(--primary-2)}
+ .mbar .b1{background:var(--accent)}.mbar .b2{background:#1FA855}
+ .btn,.tab,.faq-q,.burger{min-height:44px}
+ .burger{min-width:44px}
+}
+@media(max-width:380px){.hero h1{font-size:37px}.logo small{display:none}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
 </style></head><body>
 <div id="progress"></div>
@@ -84,7 +124,7 @@ footer{background:var(--ink);color:#B8C1C8;border-top:4px solid var(--accent);pa
 <nav><a href="#top" class="logo"><img src="img/logo.jpg" width="44" height="44" alt="CULNAD logo" style="border-radius:50%;object-fit:cover"><span>CULNAD<small>CONSTRUCTION</small></span></a>
 <div class="links"><a href="#about">About</a><a href="#facts">Facts</a><a href="#services">Services</a><a href="#testimonials">Testimonials</a><a href="#portfolio">Portfolio</a><a href="#contact">Contact</a><a class="navtel" href="tel:+233591228892"><i class="fa-solid fa-phone"></i>059 122 8892</a><a href="#contact" class="btn btn-p">Get a Quote</a></div>
 <button class="burger" id="burger" aria-label="Menu"><i class="fa-solid fa-bars"></i></button></nav></div>
-<div class="mmenu" id="mmenu"><a href="#about">About</a><a href="#facts">Facts</a><a href="#services">Services</a><a href="#testimonials">Testimonials</a><a href="#portfolio">Portfolio</a><a href="#contact">Contact</a></div>
+<div class="mmenu" id="mmenu"><button class="mclose" id="mclose" aria-label="Close menu">&times;</button><a href="#about">About</a><a href="#facts">Facts</a><a href="#services">Services</a><a href="#testimonials">Testimonials</a><a href="#portfolio">Portfolio</a><a href="#contact">Contact</a><a href="tel:+233591228892" class="mcall"><i class="fa-solid fa-phone"></i> Call us</a></div>
 <header class="hero" id="top"><div class="hero-bg"><div class="imgwrap"><img src="img/hero.jpg" alt="CULNAD luxury home project in Accra" fetchpriority="high" decoding="async"></div></div><div class="hero-scrim"></div><div class="hero-gloss"></div>
 <div class="hero-in"><div><p class="eyebrow">Engineering, Housing and More</p><h1><span class="hw"><span class="hero-word">Impeccable</span></span><span class="hw"><span class="hero-word">Artistry</span></span><span class="hw"><span class="hero-word">In</span></span><span class="hw"><span class="hero-word">Every</span></span><span class="hw"><span class="hero-word">Build</span></span></h1>
 <p class="sub">From a few men working hard to satisfy clients to a result-oriented construction company. Residential, commercial and industrial contracting across Ghana.</p>
@@ -132,6 +172,7 @@ footer{background:var(--ink);color:#B8C1C8;border-top:4px solid var(--accent);pa
 <div><h3>Company</h3><ul><li><a href="#about">About</a></li><li><a href="#facts">Facts</a></li><li><a href="#portfolio">Portfolio</a></li><li><a href="#testimonials">Testimonials</a></li><li><a href="#contact">Contact</a></li></ul></div>
 <div><h3>Contact</h3><ul><li><a href="tel:+233507780211">050 778 0211</a></li><li><a href="tel:+233591228892">+233 59 122 8892</a></li><li><a href="tel:+233591228922">+233 59 122 8922</a></li><li><a href="tel:+233544481691">+233 54 448 1691</a></li><li><a href="mailto:culnadhousing@gmail.com">culnadhousing@gmail.com</a></li><li>Mon-Sat 08:00-17:00</li></ul></div></div>
 <div class="fb"><span>Atomic Hills Estate Street, Kwabenya, Accra, Ghana</span><span>&copy; <span id="yr">2026</span> CULNAD Construction Company Limited. All rights reserved.</span></div></footer>
+<div class="mbar"><a href="tel:+233591228892" class="b1"><i class="fa-solid fa-phone"></i> Call</a><a href="https://wa.me/233591228892" class="b2" rel="noopener"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a><a href="#contact" class="b3"><i class="fa-solid fa-file-lines"></i> Quote</a></div>
 <a class="callfab" href="tel:+233591228892" aria-label="Call CULNAD"><i class="fa-solid fa-phone"></i></a>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
@@ -142,7 +183,7 @@ document.getElementById('yr').textContent=new Date().getFullYear();
 document.querySelectorAll('img[data-fallback]').forEach(function(img){img.addEventListener('error',function(){var fb=img.getAttribute('data-fallback');if(fb&&img.src!==fb){img.src=fb;img.removeAttribute('data-fallback');}},{once:true});});
 var head=document.getElementById('siteHeader');
 addEventListener('scroll',function(){var y=scrollY||pageYOffset;head.classList.toggle('scrolled',y>60);var h=document.body.scrollHeight-innerHeight;var p=document.getElementById('progress');if(p)p.style.width=(h>0?y/h*100:0)+'%';});
-var mm=document.getElementById('mmenu');document.getElementById('burger').addEventListener('click',function(){mm.classList.add('open');});mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mm.classList.remove('open');});});
+var mm=document.getElementById('mmenu');document.getElementById('burger').addEventListener('click',function(){mm.classList.add('open');});document.getElementById('mclose').addEventListener('click',function(){mm.classList.remove('open');});mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mm.classList.remove('open');});});
 function wireForm(id,ok){var f=document.getElementById(id);if(!f)return;f.addEventListener('submit',function(e){e.preventDefault();var b=new URLSearchParams(new FormData(f)).toString();var done=function(){f.style.display='none';var s=document.getElementById(ok);if(s)s.style.display='block';};fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:b}).then(done).catch(done);});}
 wireForm('leadForm','formSuccess');wireForm('leadForm2','formSuccess2');
 document.querySelectorAll('.faq-item').forEach(function(it){var q=it.querySelector('.faq-q'),a=it.querySelector('.faq-a');var set=function(o){it.classList.toggle('open',o);a.style.maxHeight=o?a.scrollHeight+'px':'0px';};if(it.classList.contains('open'))set(true);q.addEventListener('click',function(){set(!it.classList.contains('open'));});});
@@ -155,9 +196,9 @@ if(reduce){revealAll();return;}
 if(typeof gsap!=='undefined'&&typeof ScrollTrigger!=='undefined'){try{
 gsap.registerPlugin(ScrollTrigger);
 gsap.set('.hero-word',{yPercent:110,opacity:0});gsap.to('.hero-word',{yPercent:0,opacity:1,duration:.9,ease:'power3.out',stagger:.08,delay:.15});
-gsap.to('.hero-bg',{yPercent:14,scale:1.12,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+if(innerWidth>960)gsap.to('.hero-bg',{yPercent:14,scale:1.12,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
 gsap.utils.toArray('.reveal').forEach(function(el){gsap.to(el,{y:0,opacity:1,duration:.9,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 90%'}});});
-gsap.to('.whyus-bg',{yPercent:16,ease:'none',scrollTrigger:{trigger:'.whyus',start:'top bottom',end:'bottom top',scrub:true}});
+if(innerWidth>960)gsap.to('.whyus-bg',{yPercent:16,ease:'none',scrollTrigger:{trigger:'.whyus',start:'top bottom',end:'bottom top',scrub:true}});
 ScrollTrigger.refresh();addEventListener('load',function(){ScrollTrigger.refresh();});
 }catch(err){revealAll();document.querySelectorAll('.hero-word').forEach(function(w){w.style.opacity=1;w.style.transform='none';});}}else{revealAll();}
 })();
